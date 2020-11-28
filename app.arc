@@ -1,4 +1,7 @@
 @app
-begin-app
+begin-with-stripe
+
+@http
+get /products
 
 @static
