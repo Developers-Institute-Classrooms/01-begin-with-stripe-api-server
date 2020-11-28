@@ -1,8 +1,10 @@
-<img src="https://static.begin.app/node-minimal/readme-banner.png" width="553">
+# Begin with Stripe
 
-[![Begin build status](https://buildstatus.begin.app/cake-wvk/status.svg)](https://begin.com)
+An API built with [Begin](https://begin.com) to get products and start checkout sessions using Stripe
 
-A simple app with the minimum necessary file structure to get started on Begin.
+## Endpoints
+
+`GET products` - [List all products](https://stripe.com/docs/api/products/list?lang=node) from Stripe.
 
 ## Deploy your own
 
@@ -16,7 +18,7 @@ Deploy your own clone of this app to Begin!
 - Lint your code: `npm run lint` (after you've installed a linter, of course)
 - Run your tests: `npm t` (don't forget to write some!)
 
-## Reference
+## Begin Reference
 
 - [Quickstart](https://docs.begin.com/en/guides/quickstart/) - basics on working locally, project structure, deploying, and accessing your Begin app
 - [Creating new routes](https://docs.begin.com/en/functions/creating-new-functions) - basics on expanding the capabilities of your app
