@@ -4,7 +4,7 @@ An API built with [Begin](https://begin.com) to get products and start checkout 
 
 ## Endpoints
 
-`GET products` - [List all products](https://stripe.com/docs/api/products/list?lang=node) from Stripe.
+- `GET products` - Responds with the [List all products](https://stripe.com/docs/api/products/list?lang=node) response from Stripe.
 
 ## Deploy your own
 
