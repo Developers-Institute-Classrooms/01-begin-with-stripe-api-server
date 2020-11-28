@@ -25,13 +25,13 @@ exports.handler = async function products(req) {
       }),
     };
   }
-  const products = await stripe.products.list();
+  const prices = await stripe.prices.list();
 
   return {
     ...response,
     statusCode: 201,
     body: JSON.stringify({
-      products,
+      prices,
     }),
   };
 };
