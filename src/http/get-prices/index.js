@@ -25,7 +25,7 @@ exports.handler = async function products(req) {
       }),
     };
   }
-  const prices = await stripe.prices.list();
+  const prices = await stripe.prices.list({ limit: 100 });
 
   return {
     ...response,
