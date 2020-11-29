@@ -30,8 +30,6 @@ exports.handler = async function products(req) {
   return {
     ...response,
     statusCode: 201,
-    body: JSON.stringify({
-      prices,
-    }),
+    body: JSON.stringify(prices),
   };
 };
