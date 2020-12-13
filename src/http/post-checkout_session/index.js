@@ -1,4 +1,5 @@
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
+const REDIRECT_TO = process.env.REDIRECT_TO;
 
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
@@ -26,8 +27,6 @@ exports.handler = async function products(req) {
     };
   }
 
-  const domainURL = "http://127.0.0.1:5500";
-
   // Create new Checkout Session for the order
   // For full details see https://stripe.com/docs/api/checkout/sessions/create
   try {
@@ -43,8 +42,8 @@ exports.handler = async function products(req) {
         },
       ],
       // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-      success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${domainURL}/canceled.html`,
+      success_url: `${REDIRECT_TO}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${REDIRECT_TO}/canceled.html`,
     });
 
     return {
