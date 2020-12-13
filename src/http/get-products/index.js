@@ -11,25 +11,27 @@ const response = {
   },
 };
 
+const getErrorResponse = (name) => ({
+  ...response,
+  statusCode: 500,
+  body: JSON.stringify({
+    errors: [{ name }],
+  }),
+});
+
 exports.handler = async function products(req) {
   if (!STRIPE_SECRET_KEY) {
+    return getErrorResponse("Missing Stripe Key");
+  }
+
+  try {
+    const products = await stripe.products.list({ limit: 100 });
     return {
       ...response,
-      statusCode: 500,
-      body: JSON.stringify({
-        errors: [
-          {
-            name: "Missing Stripe Key",
-          },
-        ],
-      }),
+      statusCode: 200,
+      body: JSON.stringify(products),
     };
+  } catch (error) {
+    return getErrorResponse(error.message);
   }
-  const products = await stripe.products.list({ limit: 100 });
-
-  return {
-    ...response,
-    statusCode: 200,
-    body: JSON.stringify(products),
-  };
 };

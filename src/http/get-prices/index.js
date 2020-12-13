@@ -11,6 +11,14 @@ const response = {
   },
 };
 
+const getErrorResponse = (name) => ({
+  ...response,
+  statusCode: 500,
+  body: JSON.stringify({
+    errors: [{ name }],
+  }),
+});
+
 exports.handler = async function products(req) {
   if (!STRIPE_SECRET_KEY) {
     return {
@@ -25,11 +33,15 @@ exports.handler = async function products(req) {
       }),
     };
   }
-  const prices = await stripe.prices.list({ limit: 100 });
 
-  return {
-    ...response,
-    statusCode: 200,
-    body: JSON.stringify(prices),
-  };
+  try {
+    const prices = await stripe.prices.list({ limit: 100 });
+    return {
+      ...response,
+      statusCode: 200,
+      body: JSON.stringify(prices),
+    };
+  } catch (error) {
+    return getErrorResponse(error.message);
+  }
 };
