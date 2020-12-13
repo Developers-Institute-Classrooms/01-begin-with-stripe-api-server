@@ -6,6 +6,16 @@ An API built with [Begin](https://begin.com) to get products and start checkout 
 
 - `GET products` - Responds with the [List all products](https://stripe.com/docs/api/products/list?lang=node) response from Stripe.
 - `GET prices` - Responds with the [List all prices](https://stripe.com/docs/api/prices/list?lang=node) response from Stripe.
+- `POST checkout-session` - Responds with a Session ID, obtained from [Create Session](https://stripe.com/docs/api/checkout/sessions/create).
+
+  - Request body:
+
+    ```json
+    {
+      "quantity": 2,
+      "priceId": "price_12345"
+    }
+    ```
 
 ## Deploy your own
 
