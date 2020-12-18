@@ -56,7 +56,7 @@ exports.handler = async function products(req) {
         },
       ],
       // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-      success_url: `${REDIRECT_TO}?session_id=${CHECKOUT_SESSION_ID}`,
+      success_url: `${REDIRECT_TO}`,
       cancel_url: `${REDIRECT_TO}`,
     });
 
