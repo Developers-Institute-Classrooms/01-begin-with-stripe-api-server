@@ -1,6 +1,6 @@
 # Begin with Stripe
 
-An API built with [Begin](https://begin.com) to get products and start checkout sessions using Stripe
+This repository is used as a base for a Stripe API server as part of the final project for WDD01. It is an API built with [Begin](https://begin.com) to get products and start checkout sessions using Stripe
 
 ## Endpoints
 
