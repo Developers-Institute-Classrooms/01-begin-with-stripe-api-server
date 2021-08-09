@@ -4,6 +4,7 @@ const REDIRECT_TO = process.env.REDIRECT_TO;
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
 const response = {
+  cors: true,
   headers: {
     "content-type": "application/json; charset=utf8",
     "cache-control":
