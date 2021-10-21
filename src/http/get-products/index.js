@@ -19,6 +19,14 @@ const getErrorResponse = (name) => ({
   }),
 });
 
+// This function matches the prices with the products because the
+// Stripe API provides prices separately from the product info
+const getProductsWithPrices = (products, prices) =>
+  products.data.map((product) => ({
+    prices: prices.data.filter((price) => price.product === product.id),
+    ...product,
+  }));
+
 exports.handler = async function products(req) {
   if (!STRIPE_SECRET_KEY) {
     return getErrorResponse("Missing Stripe Key");
@@ -26,10 +34,13 @@ exports.handler = async function products(req) {
 
   try {
     const products = await stripe.products.list({ limit: 100 });
+    const prices = await stripe.prices.list({ limit: 100 });
+    const productsWithPrices = getProductsWithPrices(products, prices);
+
     return {
       ...response,
       statusCode: 200,
-      body: JSON.stringify(products),
+      body: JSON.stringify(productsWithPrices),
     };
   } catch (error) {
     return getErrorResponse(error.message);
